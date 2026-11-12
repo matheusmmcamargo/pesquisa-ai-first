@@ -555,13 +555,13 @@ export function executarTesteDidaticoMatematico(): {
 }
 
 /**
- * Fixture de Teste do Caso Espaço UNOA (Item 9 do Comando Mestre):
+ * Fixture de Teste do Caso Espaço CLIENTE (Item 9 do Comando Mestre):
  * Empresa de terapias integrativas com processos manuais, dados fragmentados
  * e ausência de dados quantitativos suficientes para cálculo de ROI.
  * DEVE resultar em "retornoDemonstrado: false".
  */
-export const FIXTURE_ESPACO_UNOA = {
-  empresa: "Espaço UNOA",
+export const FIXTURE_ESPACO_CLIENTE = {
+  empresa: "Espaço CLIENTE",
   segmento: "Terapias Integrativas & Bem-Estar",
   cidade: "Sorocaba / SP",
   contexto: "Operação predominantemente manual, dados fragmentados e ausência de indicadores gerenciais em tempo real.",
@@ -585,3 +585,4 @@ export const FIXTURE_ESPACO_UNOA = {
   } as OperationalEconomicInputs,
   prioridadeRecomendada: "Validar as fontes de dados de agendamentos e desenhar o primeiro fluxo de confirmação e cadastro com impacto mensurável.",
 };
+
