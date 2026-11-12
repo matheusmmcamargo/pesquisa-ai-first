@@ -1,0 +1,10 @@
+node_modules/
+dist*/
+agencia-camargo-web-main/
+.env
+.env.*
+!.env.example
+supabase/.temp/
+*.log
+*.zip
+.DS_Store
