@@ -6,7 +6,7 @@ import {
   calcularPaybackRampUp,
   executarTesteDidaticoMatematico,
   executarTesteDidaticoCompleto,
-  FIXTURE_ESPACO_UNOA
+  FIXTURE_ESPACO_CLIENTE
 } from '../financialEngine.ts';
 import type { CommercialEconomicInputs, OperationalEconomicInputs } from '../financialEngine.ts';
 import { executarDiagnosticoEstruturado } from '../diagnostic.ts';
@@ -93,22 +93,22 @@ console.log('=====================================================\n');
   assert(typeof paybackRampUp === 'number' && paybackRampUp > 0, 'Teste Ramp-Up: Payback com curva de maturação calculado com sucesso', { paybackRampUp });
 }
 
-// 2. TESTE CASO ESPAÇO UNOA (Item 9 & 6: Dados insuficientes para ROI)
+// 2. TESTE CASO ESPAÇO CLIENTE (Item 9 & 6: Dados insuficientes para ROI)
 {
-  const simUnoa = simularImpactoFinanceiro(
-    FIXTURE_ESPACO_UNOA.comercial,
-    FIXTURE_ESPACO_UNOA.operacional,
+  const simCLIENTE = simularImpactoFinanceiro(
+    FIXTURE_ESPACO_CLIENTE.comercial,
+    FIXTURE_ESPACO_CLIENTE.operacional,
     "converter_receita"
   );
 
-  assert(simUnoa.podeCalcularReceita === false, 'Espaço UNOA: podeCalcularReceita deve ser falso (sem leads/ticket)');
-  assert(simUnoa.cenarios.base.retornoDemonstrado === false, 'Espaço UNOA: retornoDemonstrado deve ser false');
+  assert(simCLIENTE.podeCalcularReceita === false, 'Espaço CLIENTE: podeCalcularReceita deve ser falso (sem leads/ticket)');
+  assert(simCLIENTE.cenarios.base.retornoDemonstrado === false, 'Espaço CLIENTE: retornoDemonstrado deve ser false');
   assert(
-    simUnoa.cenarios.base.mensagemRetorno.includes('Retorno financeiro ainda não demonstrado. Precisamos validar os indicadores necessários.'),
-    'Espaço UNOA: Exibe exatamente a mensagem mandatória de retorno não demonstrado'
+    simCLIENTE.cenarios.base.mensagemRetorno.includes('Retorno financeiro ainda não demonstrado. Precisamos validar os indicadores necessários.'),
+    'Espaço CLIENTE: Exibe exatamente a mensagem mandatória de retorno não demonstrado'
   );
-  assert(simUnoa.cenarios.base.paybackMeses.valor === null, 'Espaço UNOA: Payback deve ser null sem dados para calcular');
-  assert(simUnoa.dadosAusentes.length > 0, 'Espaço UNOA: Lista campos ausentes para orientar a sessão de validação', simUnoa.dadosAusentes);
+  assert(simCLIENTE.cenarios.base.paybackMeses.valor === null, 'Espaço CLIENTE: Payback deve ser null sem dados para calcular');
+  assert(simCLIENTE.dadosAusentes.length > 0, 'Espaço CLIENTE: Lista campos ausentes para orientar a sessão de validação', simCLIENTE.dadosAusentes);
 }
 
 // 3. TESTE DE CAPACIDADE LIBERADA VS REDUÇÃO DE CUSTO (Item 6)
@@ -190,3 +190,4 @@ console.log('=====================================================\n');
 console.log('\n=====================================================');
 console.log(`📊 RESULTADO DOS TESTES: ${passedTests} de ${totalTests} passaram com sucesso!`);
 console.log('=====================================================\n');
+
